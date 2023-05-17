@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"Practicas/Practica6/gson-2.8.5.jar",
+			"Practicas/Practica6/jSSLKeyLog.jar"
+		]
+	}
+}
