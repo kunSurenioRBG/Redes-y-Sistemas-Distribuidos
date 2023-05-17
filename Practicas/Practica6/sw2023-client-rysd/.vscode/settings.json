@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\alumno\\Downloads\\Piedad Atiende\\gson-2.8.5.jar",
+        "c:\\Users\\alumno\\Downloads\\Piedad Atiende\\jSSLKeyLog.jar"
+    ]
+}
