@@ -26,10 +26,10 @@ public class Main {
 		sc = new Scanner(System.in);
 
 		do {
-			tallest(sw);
+			//tallest(sw);
 			//whoBornIn1(sw);
 			//whoBornIn2(sw);
-			//laPregunta(sw);
+			laPregunta(sw);
 			System.out.println("Desea otra ronda (s/n)?");
 			response = sc.nextLine();
 		} while (response.equals("s"));
@@ -100,53 +100,63 @@ public class Main {
 			System.out.println("Fallaste :( " + error[rand.nextInt(error.length)]);
 		}
 	}
-	/* 
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Pregunta propia :3
+	 
 	public static void laPregunta(SWClient sw) {
-        // Obteniendo la cantidad de personas
-        int max_people = sw.getNumberOfResources("people");
-        if (max_people == 0) {
-            System.out.println("No se encontraron personas.");
+        // Obteniendo la cantidad de planetas almacenada
+        int max_world = sw.getNumberOfResources("planets");
+        if (max_world == 0) {
+            System.out.println("No se encontraron planetas.");
             return;
         }
 
         System.out.println("Generando nueva pregunta...");
-        // Obteniendo el persona (que tenga color de pelo)
+        // Cogiendo dos planetas al azar sin repetir
         List<Integer> used = new ArrayList<Integer>();
-        Person person = null;
-        do {
-            Integer p = getRandomResource(max_people, used);
-            person = sw.getPerson(sw.generateEndpoint("people", p));
-            if (person == null) {
+        List<World> worlds = new ArrayList<>();
+        int counter = 0;
+        while (counter < 2) {
+            Integer p = getRandomResource(max_world, used);
+            World world = sw.getWorld(sw.generateEndpoint("planets", p));
+            if (world == null) {
                 System.out.println("Hubo un error al encontrar el recurso " + p);
+            } else {
+                if(!world.population.equals("unknown")) { //Hay que mirar que la poblacion no sea unknown
+                    worlds.add(world);
+                    counter++;
+                }
             }
             used.add(p);
-        } while (person == null || person.hair_color.equals("n/a") || person.hair_color.equals("none")); //tiene que tener color de pelo
-
-        // Planteamos la pregunta
-        String s = null;
-        System.out.println("�Quien tiene el mismo color de pelo que " + person.name + "?");
-        s = sc.nextLine();
-        // Buscamos la persona indicada
-        Person p = sw.search(s);
-
-        // Validamos la respuesta y mostramos sus datos
-        if (p == null) {
-            System.out.println("No hay nadie con ese nombre");
-        } else if (person.name.equals(p.name)){
-            System.out.println("Es el mismo nombre, percibo tu lado oscuro...");
-        } else {
-            System.out.println("El pelo de " + person.name + " es de color " + person.hair_color);
-            System.out.println("El pelo de " + p.name + " es de color " + p.hair_color);
         }
 
-        // Resultados
-        if (p != null && person.hair_color.equals(p.hair_color) && !person.name.equals(p.name)) {
-            System.out.println("Enhorabuena!!! " + success[rand.nextInt(success.length)]);
+        // Escribiendo la pregunta y leyendo la opci�n
+        Integer n = null;
+        do {
+            System.out.println("�Qu� planeta tiene m�s habitantes? [0] " + worlds.get(0).name + " o [1] " + worlds.get(1).name);
+            try {
+                n = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException ex) {
+                n = -1;
+            }
+        } while (n != 0 && n != 1);
+
+        // Mostrando la informaci�n de los planetas elegidos
+        for (World w : worlds) {
+            System.out.println(w.name + " tiene " + w.population + " habitantes");
+        }
+
+        // Resultado
+        double resultadoEscogido = Double.parseDouble(worlds.get(n).population);
+        double otroResultado = Double.parseDouble(worlds.get((n + 1) % 2).population);
+        if (resultadoEscogido >= otroResultado) {
+            System.out.println("Que bendisiooon vaya makina estas hecho ;) " + success[rand.nextInt(success.length)]);
         } else {
-            System.out.println("Fallaste :( " + error[rand.nextInt(error.length)]);
+            System.out.println("Lo que no te mata, te hace mas fuerte. De to se sale :/ " + error[rand.nextInt(error.length)]);
         }
     }
-	*/
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Pregunta que relaciona varios recursos:
 	// - Elige un recurso (planeta en este caso)
