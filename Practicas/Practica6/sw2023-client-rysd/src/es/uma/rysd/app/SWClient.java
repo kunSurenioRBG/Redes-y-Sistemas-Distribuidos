@@ -291,18 +291,17 @@ public class SWClient {
 			e.printStackTrace();
 		}
 		QueryResponse sr = parser.fromJson(new InputStreamReader(in), QueryResponse.class);
-		// Devuelve los datos iniciales de personaje (siempre el primero de la lista)
-		p = sr.results[0];
-		p.homeplanet = getWorld(servicio.toString());
 
 		// Para las preguntas 2 y 3 (no necesita completar esto para la pregunta
 		// 1)
 		// A partir de la URL en el campo homreworld obtenga los datos del planeta
 		// y almacenelo en atributo homeplanet
-		World homeplanet = new World();
-		homeplanet = getWorld(p.homeworld);
-		p.homeplanet = homeplanet;
-
+		if (sr.count > 0) {
+			p = sr.results[0];
+			World homeplanet = new World();
+			homeplanet = getWorld(p.homeworld);
+			p.homeplanet = homeplanet;
+		}
 		// Devuelve el numero de elementos
 		return p;
 	}
