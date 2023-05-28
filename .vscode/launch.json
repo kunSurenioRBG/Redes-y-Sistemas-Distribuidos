@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ClientTCP",
+            "request": "launch",
+            "mainClass": "Practicas.Practica5.ClientTCP",
+            "projectName": "redes_distribuidas_a204b04b"
+        },
+        {
+            "type": "java",
+            "name": "ServerTCP",
+            "request": "launch",
+            "mainClass": "Practicas.Practica5.ServerTCP",
+            "projectName": "redes_distribuidas_a204b04b"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "es.uma.rysd.app.Main",
+            "projectName": "sw2022-client-rysd",
+            "vmArgs": "-Xmx2007m -javaagent:jSSLKeyLog.jar=sslkey-app.log"
+        }
+    ]
+}
