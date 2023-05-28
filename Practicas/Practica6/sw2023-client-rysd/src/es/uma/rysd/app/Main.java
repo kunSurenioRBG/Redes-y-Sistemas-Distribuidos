@@ -26,10 +26,10 @@ public class Main {
 		sc = new Scanner(System.in);
 
 		do {
-			//tallest(sw);
+			tallest(sw);
 			//whoBornIn1(sw);
 			//whoBornIn2(sw);
-			laPregunta(sw);
+			//laPregunta(sw);
 			System.out.println("Desea otra ronda (s/n)?");
 			response = sc.nextLine();
 		} while (response.equals("s"));
